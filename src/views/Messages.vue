@@ -93,7 +93,7 @@
 </template>
 
 <script>
-  import { getGuests, getChaseGuests, getAttendingGuests, sendMessage, fetchLogs, getKlayo } from '../services/WeddingService';
+  import { getGuests, getChaseGuests, getAttendingGuests, sendMessage, fetchLogs } from '../services/WeddingService';
   import * as moment from "moment/moment";
 
   export default {
@@ -108,13 +108,12 @@
         messageRules: [
           v => !!v || 'Message is required',
         ],
-        guestTypes: ['All Guests', 'No Response', 'Attending Guests', 'Klayo'],
+        guestTypes: ['All Guests', 'No Response', 'Attending Guests'],
         guestType: '',
         message: '',
         allGuests: [],
         chaseGuests: [],
         attendingGuests: [],
-        klayoGuests: [],
         status: [],
         testMessage: {
           number: "+13137275279",
@@ -153,7 +152,6 @@
       this.getAllGuests();
       this.getAllChaseGuests();
       this.getAllAttendingGuests();
-      this.getKlayoGuests();
       this.getAllLogs();
     },
     components: {
@@ -171,13 +169,6 @@
 
         getChaseGuests(accessToken).then(res => {
           this.chaseGuests = res;
-        });
-      },
-      async getKlayoGuests() {
-        const accessToken = await this.$auth.getTokenSilently();
-
-        getKlayo(accessToken).then(res => {
-          this.klayoGuests = res;
         });
       },
       async getAllAttendingGuests() {
@@ -231,16 +222,6 @@
               message: messageBody
             }
             this.sendFullMessage(packet, this.chaseGuests[j].name);
-            this.reset();
-            this.resetValidation();
-          }
-        } else if (guestType === 'Klayo') {
-          for (var l = 0; l < this.klayoGuests.length; l++) {
-            packet = {
-              number: this.klayoGuests[l].phone,
-              message: messageBody
-            }
-            this.sendFullMessage(packet, this.klayoGuests[l].name);
             this.reset();
             this.resetValidation();
           }

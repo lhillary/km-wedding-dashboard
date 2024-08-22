@@ -37,23 +37,6 @@ export async function getChaseGuests(accessToken) {
     }
 }
 
-export async function getKlayo(accessToken) {
-    let axiosConfig = {
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Accept': 'application/json',
-            Authorization: `Bearer ${accessToken}`
-        }
-    };
-
-    try{
-        let res = await axios.get(`${baseUrl}/klayo`, axiosConfig);
-        return res.data;
-    } catch(err) {
-        console.log(err);
-    }
-}
-
 export async function getAttendingGuests(accessToken) {
     let axiosConfig = {
         headers: {
