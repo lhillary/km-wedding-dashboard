@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'https://api.humphreyhillaryhitchin.com';
+const baseUrl = 'https://api.katie-mike-wedding.com';
 const number = '';
 
 export async function getGuests(accessToken) {

@@ -3,7 +3,7 @@
     <v-app-bar app color="#000" dark elevation="0">
         <v-app-bar-nav-icon @click.stop="sidebarMenu = !sidebarMenu"></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
-        <v-btn text link href="https://humphreyhillaryhitchin.com">
+        <v-btn text link href="https://katie-mike-wedding.com">
           Back to Site
           <v-icon right>mdi-open-in-new</v-icon>
         </v-btn>
@@ -23,7 +23,7 @@
             </v-list-item-action>
             <v-list-item-content>
                 <v-list-item-title>
-                    <h3 class="font-weight-bold">L&D Dashboard</h3>
+                    <h3 class="font-weight-bold">Dashboard</h3>
                 </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
