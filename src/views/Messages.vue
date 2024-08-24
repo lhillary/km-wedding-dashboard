@@ -189,7 +189,7 @@
 		async getParentGuests() {
 			const accessToken = await this.$auth.getTokenSilently();
 			getParents(accessToken).then(res => {
-				this.klayoGuests = res;
+				this.parentGuests = res;
 			});
       },
       onSubmit() {
@@ -245,7 +245,7 @@
         } else if (guestType === 'Katie Parents') {
           for (var l = 0; l < this.parentGuests.length; l++) {
             packet = {
-              number: this.klayoGuests[l].phone,
+              number: this.parentGuests[l].phone,
               message: messageBody
             }
             this.sendFullMessage(packet, this.parentGuests[l].name);
