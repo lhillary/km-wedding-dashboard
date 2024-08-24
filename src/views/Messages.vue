@@ -153,6 +153,7 @@
       this.getAllGuests();
       this.getAllChaseGuests();
       this.getAllAttendingGuests();
+		this.getParentGuests();
       this.getAllLogs();
     },
     components: {
