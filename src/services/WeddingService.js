@@ -111,3 +111,20 @@ export async function fetchLogs(accessToken) {
         console.log(err);
     }
 }
+
+export async function getParents(accessToken) {
+    let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Accept': 'application/json',
+            Authorization: `Bearer ${accessToken}`
+        }
+    };
+
+    try{
+        let res = await axios.get(`${baseUrl}/klayo`, axiosConfig);
+        return res.data;
+    } catch(err) {
+        console.log(err);
+    }
+}

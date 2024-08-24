@@ -93,7 +93,7 @@
 </template>
 
 <script>
-  import { getGuests, getChaseGuests, getAttendingGuests, sendMessage, fetchLogs } from '../services/WeddingService';
+  import { getGuests, getChaseGuests, getAttendingGuests, sendMessage, fetchLogs, getParents } from '../services/WeddingService';
   import * as moment from "moment/moment";
 
   export default {
@@ -108,12 +108,13 @@
         messageRules: [
           v => !!v || 'Message is required',
         ],
-        guestTypes: ['All Guests', 'No Response', 'Attending Guests'],
+        guestTypes: ['All Guests', 'No Response', 'Attending Guests', 'Katie Parents'],
         guestType: '',
         message: '',
         allGuests: [],
         chaseGuests: [],
         attendingGuests: [],
+		parentGuests: [],
         status: [],
         testMessage: {
           number: "+13137275279",
@@ -185,6 +186,12 @@
           this.logData = res;
         });
       },
+		async getParentGuests() {
+			const accessToken = await this.$auth.getTokenSilently();
+			getParents(accessToken).then(res => {
+				this.klayoGuests = res;
+			});
+      },
       onSubmit() {
         let valid = this.validateForm();
 
@@ -232,6 +239,16 @@
               message: messageBody
             }
             this.sendFullMessage(packet, this.attendingGuests[k].name);
+            this.reset();
+            this.resetValidation();
+          }
+        } else if (guestType === 'Katie Parents') {
+          for (var l = 0; l < this.parentGuests.length; l++) {
+            packet = {
+              number: this.klayoGuests[l].phone,
+              message: messageBody
+            }
+            this.sendFullMessage(packet, this.parentGuests[l].name);
             this.reset();
             this.resetValidation();
           }
