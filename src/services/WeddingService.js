@@ -122,7 +122,7 @@ export async function getParents(accessToken) {
     };
 
     try{
-        let res = await axios.get(`${baseUrl}/klayo`, axiosConfig);
+        let res = await axios.get(`${baseUrl}/parents`, axiosConfig);
         return res.data;
     } catch(err) {
         console.log(err);
